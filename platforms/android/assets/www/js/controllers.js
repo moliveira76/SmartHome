@@ -1,4 +1,30 @@
 angular.module('app.controllers', [])
+
+.controller('lightStateCtrl', ['$scope', '$http', '$stateParams',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $timeout, $stateParams) {
+
+	$scope.checkStatus = function(){
+		$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+		}).then(function successCallback(response) {
+			window.alert(response.data.result);
+		}, function errorCallback(response) {
+				  	alert(response);
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+	  	});
+	}
+
+}])
+
+
+
+
+
   
 .controller('lightCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -97,10 +123,28 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $http, $stateParams, $location) {
+
+	$scope.auth = function(){
+
+		$http({
+	        method: 'POST',
+	        url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/authenticate',
+	        data: 'username=' + $scope.data.username + '&password=' + $scope.data.password,
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			$location.path('/side-menu21/page7');
+
+		}, function errorCallback(response) {
+		  	$location.path('/page4');
+		    // called asynchronously if an error occurs
+		    // or server returns response with an error status.
+	  	});
+
+	}
 
 
 }])

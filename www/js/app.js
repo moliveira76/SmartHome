@@ -29,8 +29,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
     //Begin the service
     //hard coded 'target'
-    var lat = 45.3830819;
-    var long = -75.69831199999999;
+    var lat = 45.3520158;
+    var long = -75.91496169999999;
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
     }

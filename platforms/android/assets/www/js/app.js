@@ -14,7 +14,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
-.run(function($ionicPlatform, GeoAlert) {
+.run(function($ionicPlatform, $ionicPopup, GeoAlert) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -29,8 +29,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
     //Begin the service
     //hard coded 'target'
-    var lat = 45.3145318;
-    var long = -75.6172014;
+    var lat = 45.3520158;
+    var long = -75.91496169999999;
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
     }
@@ -38,12 +38,10 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     GeoAlert.begin(lat,long, function() {
       console.log('TARGET');
       GeoAlert.end();
-      navigator.notification.confirm(
-        'You are near a target!',
-        onConfirm,
-        'Target!',
-        ['Cancel','View']
-      );
+      $ionicPopup.alert({
+        title: 'Target!',
+        template: 'You are near your target!'
+    });
       
     });
 

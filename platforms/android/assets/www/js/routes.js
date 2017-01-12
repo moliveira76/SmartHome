@@ -10,7 +10,7 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.light', {
+    .state('menu.light', {
     url: '/page1',
     views: {
       'side-menu21': {
