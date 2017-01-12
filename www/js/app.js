@@ -14,7 +14,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup, GeoAlert) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,6 +26,25 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //Begin the service
+    //hard coded 'target'
+    var lat = 45.3830819;
+    var long = -75.69831199999999;
+    function onConfirm(idx) {
+      console.log('button '+idx+' pressed');
+    }
+    
+    GeoAlert.begin(lat,long, function() {
+      console.log('TARGET');
+      GeoAlert.end();
+      $ionicPopup.alert({
+        title: 'Target!',
+        template: 'You are near your target!'
+    });
+      
+    });
+
   });
 })
 
