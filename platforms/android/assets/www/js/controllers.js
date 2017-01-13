@@ -1,10 +1,10 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['ionic'])
 
-.controller('lightStateCtrl', ['$scope', '$http', '$stateParams',
+.controller('lightStateCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', '$timeout',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $timeout, $stateParams) {
+function ($scope, $http, $timeout, $stateParams, $ionicPopup, $timeout) {
 
 	$scope.checkStatus = function(){
 		$http({
@@ -54,10 +54,10 @@ function ($scope, $http, $timeout, $stateParams) {
 
 }])
    
-.controller('temperatureCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('temperatureCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams) {
+function ($scope, $http, $stateParams, $ionicPopup) {
 	$scope.image = "temperature.png";
 
 	$scope.getTemp = function(){
@@ -79,6 +79,10 @@ function ($scope, $http, $stateParams) {
      			else{
 					$scope.image = "temperature_hot.png";
      			}
+     			$ionicPopup.alert({
+		        	title: 'testtt!',
+		        	template: 'tetstst!'
+		    	});
      			console.log("image:" + $scope.image);
 			  }, function errorCallback(response) {
 			  	alert(response);
