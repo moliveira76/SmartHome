@@ -30,6 +30,10 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "43450091796",
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
     "dependent_plugins": {

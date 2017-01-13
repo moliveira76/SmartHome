@@ -5,16 +5,35 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
-.config(function($ionicConfigProvider, $sceDelegateProvider){
+.config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
   
 
   $sceDelegateProvider.resourceUrlWhitelist([ 'self','*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "b611c3bc"
+    },
+    "push": {
+      "sender_id": "43450091796",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
+
 })
 
-.run(function($ionicPlatform, $ionicPopup, GeoAlert) {
+.run(function($ionicPlatform, $ionicPopup, GeoAlert, $ionicPush, $ionicAuth) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,10 +46,29 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
       StatusBar.styleDefault();
     }
 
+    //var details = {'email': 'tikawy@hotmail.com', 'password': 'tikaelmasry'};
+    //$ionicAuth.signup(details);
+
+    var details = {'email': 'tikawy@hotmail.com', 'password': 'tikaelmasry'};
+    $ionicAuth.login('basic', details);
+
+    $ionicPush.register().then(function(t) {
+      return $ionicPush.saveToken(t);
+    }).then(function(t) {
+      window.alert('Token saved:', JSON.stringify(t.token));
+    });
+
     //Begin the service
     //hard coded 'target'
-    var lat = 45.3830819;
-    var long = -75.69831199999999;
+    /*var lat = 45.3145318; //929 bunchberry way
+    var long = -75.6172014;*/
+
+    var lat = 45.3520158; //Kanata
+    var long = -75.91496169999999; 
+
+    /*var lat = 45.3830819; //Carleton U
+    var long = -75.69831199999999;*/
+
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
     }
@@ -60,6 +98,11 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
             function allowDrag(){
               $ionicSideMenuDelegate.canDragContent(true);
             }
+
+            $scope.$on('cloud:push:notification', function(event, data) {
+              var msg = data.message;
+              alert(msg.title + ': ' + msg.text);
+            });
 
             $rootScope.$on('$ionicSlides.slideChangeEnd', allowDrag);
             $element.on('touchstart', stopDrag);

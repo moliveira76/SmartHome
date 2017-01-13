@@ -1,5 +1,4 @@
-angular.module('app.controllers', ['ionic'])
-
+angular.module('app.controllers', ['ionic', 'ionic.cloud'])
   
 .controller('lightCtrl', ['$scope', '$http', '$stateParams', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -110,10 +109,10 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', '$rootScope', '$ionicPush', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope) {
+function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope, $ionicPush) {
 
 	$scope.auth = function(){
 		$ionicLoading.show({
