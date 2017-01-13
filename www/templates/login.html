@@ -1,6 +1,7 @@
 <ion-view title="Login" id="page4">
   <ion-content padding="true" class="has-header">
-    <form id="login-form1" class="list">
+  <img style="width: 300px; height: 300px;" align="middle" src="img/logo.jpg"/>
+    <form style="margin-top: -80px;" id="login-form1" class="list">
       <ion-list id="login-list2">
         <label class="item item-input" id="login-input1">
           <span class="input-label">Username</span>
@@ -11,9 +12,9 @@
           <input type="password" placeholder="" ng-model="data.password">
         </label>
       </ion-list>
-      <div class="spacer" style="height: 40px;"></div>
+      <div class="spacer" style="height: 5px;"></div>
       <a id="login-button1" class="button button-stable  button-block" ng-controller="loginCtrl" ng-click="auth()">Log in</a>
-      <a ui-sref="signup" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
+      <a style="margin-top: -20px;" ui-sref="signup" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
     </form>
   </ion-content>
 </ion-view>
