@@ -15,12 +15,12 @@
     <ion-content padding="false" class="side-menu-left has-header ">
       <ion-list id="menu-list1">
         <ion-item id="menu-list-item1" ui-sref="menu.home" menu-close="">Home</ion-item>
-        <ion-item id="menu-list-item2" ng-controller="lightStateCtrl" ng-click="checkStatus()" ui-sref="menu.light" menu-close="">Light</ion-item>
+        <ion-item id="menu-list-item2" ng-controller="lightCtrl" ng-click="checkStatus()" ui-sref="menu.light" menu-close="">Light</ion-item>
         <ion-item id="menu-list-item10" ui-sref="menu.temperature" menu-close="">Temperature</ion-item>
         <ion-item id="menu-list-item3" ui-sref="menu.humidity" menu-close="">Humidity</ion-item>
         <ion-item id="menu-list-item3" ui-sref="menu.camera" menu-close="">Camera</ion-item>
         <ion-item id="menu-list-item3" ui-sref="menu.configurations" menu-close="">Configurations</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.logout" menu-close="">Log Out</ion-item>
+        <ion-item id="menu-list-item3" ui-sref="menu.logout" ng-controller="logoutCtrl" ng-click="logout()" menu-close="">Log Out</ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

@@ -1,10 +1,12 @@
 angular.module('app.controllers', ['ionic'])
 
-.controller('lightStateCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', '$timeout',
-// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+  
+.controller('lightCtrl', ['$scope', '$http', '$stateParams', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $timeout, $stateParams, $ionicPopup, $timeout) {
+function ($scope, $http, $timeout, $stateParams, $rootScope) {
+	//window.alert($rootScope.lights);
+	$scope.toggleState = { checked: false };
 
 	$scope.checkStatus = function(){
 		$http({
@@ -18,20 +20,6 @@ function ($scope, $http, $timeout, $stateParams, $ionicPopup, $timeout) {
 				    // or server returns response with an error status.
 	  	});
 	}
-
-}])
-
-
-
-
-
-  
-.controller('lightCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $timeout, $stateParams) {
-
-	$scope.toggleState = { checked: false };
   
   	$scope.$watch('toggleState.checked', function(newValue, oldValue) {
 	    if(newValue == true){
@@ -79,10 +67,6 @@ function ($scope, $http, $stateParams, $ionicPopup) {
      			else{
 					$scope.image = "temperature_hot.png";
      			}
-     			$ionicPopup.alert({
-		        	title: 'testtt!',
-		        	template: 'tetstst!'
-		    	});
      			console.log("image:" + $scope.image);
 			  }, function errorCallback(response) {
 			  	alert(response);
@@ -94,10 +78,10 @@ function ($scope, $http, $stateParams, $ionicPopup) {
 
 }])
    
-.controller('humidityCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('humidityCtrl', ['$scope', '$http', '$stateParams','$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams) {
+function ($scope, $http, $stateParams, $rootScope) {
 
 		$scope.getHumidity = function(){
 
@@ -105,7 +89,6 @@ function ($scope, $http, $stateParams) {
 			  method: 'GET',
 			  url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 			}).then(function successCallback(response) {
-
 				$scope.humidityTextArea = Math.round((response.data.result*100))/100;
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -127,12 +110,17 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $location) {
+function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope) {
 
 	$scope.auth = function(){
+		$ionicLoading.show({
+  			template: '<p>Loading...</p><ion-spinner icon="android"></ion-spinner>'
+        });
+
+        //$rootScope.lights = [{name:"l1"}, {name: "l2"}, {name: "l3"}];
 
 		$http({
 	        method: 'POST',
@@ -140,10 +128,19 @@ function ($scope, $http, $stateParams, $location) {
 	        data: 'username=' + $scope.data.username + '&password=' + $scope.data.password,
 	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
 		}).then(function successCallback(response) {
+			$scope.data.username = null;
+			$scope.data.password = null;
 			$location.path('/side-menu21/page7');
-
+			$ionicLoading.hide();
 		}, function errorCallback(response) {
+			$scope.data.username = null;
+			$scope.data.password = null;
 		  	$location.path('/page4');
+		  	$ionicLoading.hide();
+	  	   	$ionicPopup.alert({
+        		title: 'Login Failed!',
+        		template: 'Please check username/password!'
+    		});
 		    // called asynchronously if an error occurs
 		    // or server returns response with an error status.
 	  	});
@@ -152,6 +149,22 @@ function ($scope, $http, $stateParams, $location) {
 
 
 }])
+
+
+.controller('logoutCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+
+	$scope.logout = function(){
+		$ionicLoading.hide();
+		$location.path('/page4');
+	}
+
+}])
+
+
+
    
 .controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
