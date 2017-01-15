@@ -1,9 +1,24 @@
 <ion-view title="Light" id="page1">
   <ion-content padding="true" class="has-header">
     <form id="light-form7" class="list">
-      <ion-toggle toggle-class="toggle-positive" ng-repeat="light in lights" id="light-toggle5" ng-model="toggleState.checked">{{light.name}}</ion-toggle>
-      <!-- <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked2">Room 2</ion-toggle>
-      <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked3">Room 3</ion-toggle> -->
+    	<h1 class="title">Light Control</h1>
+      <!--<ion-toggle toggle-class="toggle-positive" ng-repeat="light in lights" id="light-toggle5" ng-model="toggleState.checked">{{light.name}}</ion-toggle>-->
+      <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked1">Room 1</ion-toggle>
+      <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked2">Room 2</ion-toggle>
+      <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked3">Room 3</ion-toggle>
     </form>
+
+
+	<h1 class="title">Light Usage</h1>
+
+  	<div class="button-bar">
+		<a id="53ff72066667574817532367" class="button button-positive" data-ng-click="getUsage($event)">Room 1</a>
+  		<a id="53ff6f066667574834212367" class="button button-positive" data-ng-click="getUsage($event)">Room 2</a>
+		<a id="53ff6f066667574835380967" class="button button-positive" data-ng-click="getUsage($event)">Room 3</a>
+	</div>
+	<label class="item item-input">
+    <input type="text" style="text-align:center;" ng-model="usagetxtarea">
+  </label>
+
   </ion-content>
 </ion-view>

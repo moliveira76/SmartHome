@@ -40,6 +40,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.messaging', {
+    url: '/page6',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/messaging.html',
+        controller: 'messagingCtrl'
+      }
+    }
+  })
+
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',

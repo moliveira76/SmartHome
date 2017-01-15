@@ -1,0 +1,6 @@
+<ion-view title="Messaging" id="page6">
+  <ion-content padding="true" class="has-header">
+   	<ion-checkbox ng-repeat="user in users" ng-model="checkedItems[user.email]" ng-change="print()" ng-init="checkStatus=false">{{user.name}}</ion-checkbox>
+	<button class="button button-block button-positive" ng-click="save()">Send</button>
+  </ion-content>
+</ion-view>

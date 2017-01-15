@@ -61,6 +61,52 @@ angular.module('app.services', [])
    
 })
 
-.service('BlankService', [function(){
 
-}]);
+.factory('ClockSrv', function($interval){
+  var clock = null;
+  var service = {
+    startClock: function(fn){
+      if(clock === null){
+        clock = $interval(fn, 10000);
+      }
+    },
+    stopClock: function(){
+      if(clock !== null){
+        $interval.cancel(clock);
+        clock = null;
+      }
+    }
+  };
+
+  return service;
+})
+
+
+
+.service('sharedProperties', function() {
+    var light = "";
+    var temp = "";
+    var humidity = "";
+    
+    return {
+        getLight: function() {
+            return light;
+        },
+        getTemp: function() {
+            return temp;
+        },
+        getHumidity: function() {
+            return humidity;
+        },
+        setValues: function(lightText, tempText, humidityText) {
+            light = lightText;
+            temp = tempText;
+            humidity = humidityText;
+
+
+        },
+        getObject: function() {
+            return objectValue;
+        }
+    }
+});

@@ -34,10 +34,19 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "43450091796",
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "com.jcjee.plugins.emailcomposer": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     }
