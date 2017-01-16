@@ -50,6 +50,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.configurations', {
+    url: '/page8',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/configurations.html',
+        controller: 'configurationsCtrl'
+      }
+    }
+  })
+
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',

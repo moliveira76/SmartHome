@@ -2,7 +2,12 @@
   <ion-content padding="true" class="has-header">
     <form id="light-form7" class="list">
     	<h1 class="title">Light Control</h1>
-      <!--<ion-toggle toggle-class="toggle-positive" ng-repeat="light in lights" id="light-toggle5" ng-model="toggleState.checked">{{light.name}}</ion-toggle>-->
+
+
+      <!--<ion-toggle toggle-class="toggle-positive" ng-repeat="light in lights" ng-model="checkedItems[light.boardId]" ng-change="print()" ng-checked="light.checked" >{{light.name}}</ion-toggle>-->
+
+
+
       <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked1">Room 1</ion-toggle>
       <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked2">Room 2</ion-toggle>
       <ion-toggle toggle-class="toggle-positive" id="light-toggle5" ng-model="toggleState.checked3">Room 3</ion-toggle>

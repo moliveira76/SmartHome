@@ -4,40 +4,73 @@ angular.module('app.controllers', ['ionic', 'ionic.cloud'])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotification) {
-	//window.alert($rootScope.lights);
-	$scope.toggleState = { checked: false };
 
-	function sleep(milliseconds) {
-	  var start = new Date().getTime();
-	  for (var i = 0; i < 1e7; i++) {
-	    if ((new Date().getTime() - start) > milliseconds){
-	      break;
-	    }
-	  }
-	}
+	/*$scope.lights = [
+		{name: "Room 1", boardId: "53ff72066667574817532367", checked: false},
+		{name: "Room 2", boardId: "53ff6f066667574834212367", checked: false},
+		{name: "Room 3", boardId: "53ff6f066667574835380967", checked: false},
+	];
+
+
+	$scope.checkedItems = {};
+
+	var OnStates = [];
+
+	$scope.print = function() {
+		console.log($scope.checkedItems);
+	}*/
+
 
 	$scope.checkStatus = function(){
-		sleep(5000);
-
-		$cordovaLocalNotification.schedule({
-      		id: 1,
- 		 	text: 'Instant Notification',
-          	title: 'Instant'
-        	}).then(function () {
-	          alert("Instant Notification set");
-        });
-
 		$http({
 	        method: 'GET',
-	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
 		}).then(function successCallback(response) {
-			window.alert(response.data.result);
+			//window.alert(response.data.result);
+			if(response.data.result == "ON"){
+				OnStates.push(response.data.coreInfo.deviceID);
+			}
 		}, function errorCallback(response) {
 				  	alert(response);
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 	  	});
+
+	  	$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+		}).then(function successCallback(response) {
+			//window.alert(response.data.result);
+			if(response.data.result == "ON"){
+				OnStates.push(response.data.coreInfo.deviceID);
+				window.alert(OnStates.indexOf('53ff6f066667574834212367') > -1);
+			}
+		}, function errorCallback(response) {
+				  	alert(response);
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+	  	});
+
+	  	$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+		}).then(function successCallback(response) {
+			//window.alert(response.data.result);
+			if(response.data.result == "ON"){
+				OnStates.push(response.data.coreInfo.deviceID);
+			}
+		}, function errorCallback(response) {
+				  	alert(response);
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+	  	});
+
 	}
+
+
+
+	$scope.toggleState = { checked: false };
+
   
   	$scope.$watch('toggleState.checked1', function(newValue, oldValue) {
 	    if(newValue == true){
@@ -139,7 +172,7 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
 	}
 
 	$scope.getTemp = function(){
-		sleep(5000);
+		/*sleep(5000);
 
 		$cordovaLocalNotification.schedule({
       		id: 1,
@@ -147,7 +180,7 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
           	title: 'Instant'
         	}).then(function () {
 	          alert("Instant Notification set");
-        });
+        });*/
 
 
 		$http({
@@ -307,6 +340,27 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 
 }])
 
+
+
+.controller('configurationsCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sharedProperties) {
+
+	$scope.saveData = function(l, t, h){
+	    window.localStorage.setItem("light", l);
+	    window.localStorage.setItem("temp", t);
+	    window.localStorage.setItem("humidity", h);
+	}
+
+	$scope.loadData = function(){
+	    $scope.lightThreshTextArea = window.localStorage.getItem("light");
+	    $scope.tempThreshTextArea  = window.localStorage.getItem("temp");
+	    $scope.humidityThreshTextArea  = window.localStorage.getItem("humidity");
+  	}
+
+
+}])
 
 
    

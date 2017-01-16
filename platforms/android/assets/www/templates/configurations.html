@@ -1,0 +1,23 @@
+<ion-view title="Configurations" id="page8">
+  	<ion-content padding="true" class="has-header">
+
+  		<div class="list">
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Maximum Light Usage</span>
+		    <input type="text" placeholder="" ng-model="lightThreshTextArea">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Threshold Temperature</span>
+		    <input type="text" placeholder="" ng-model="tempThreshTextArea">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Threshold Humidity</span>
+		    <input type="text" placeholder="" ng-model="humidityThreshTextArea">
+		  </label>
+		  <!--<button class="button button-block button-positive" ng-controller="configurationsCtrl" ng-click="setValues(lightThreshTextArea, tempThreshTextArea, humidityThreshTextArea)">Save</button>-->
+		   <button class="button button-block button-positive" ng-click="loadData()">Load</button>
+		  <button class="button button-block button-positive" ng-controller="configurationsCtrl" ng-click="saveData(lightThreshTextArea, tempThreshTextArea, humidityThreshTextArea)">Save</button>
+		</div>
+
+	</ion-content>
+</ion-view>
