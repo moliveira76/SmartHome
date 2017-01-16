@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
   
@@ -32,7 +32,7 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
 
 })
 
-.run(function($ionicPlatform, $ionicPopup, GeoAlert, $ionicPush, $ionicAuth) {
+.run(function($ionicPlatform, $ionicPopup, GeoAlert, sharedProperties, $ionicPush, $ionicAuth, ClockSrv, $http, $cordovaLocalNotification) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,18 +45,6 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    //var details = {'email': 'tikawy@hotmail.com', 'password': 'tikaelmasry'};
-    //$ionicAuth.signup(details);
-
-    var details = {'email': 'tikawy@hotmail.com', 'password': 'tikaelmasry'};
-    $ionicAuth.login('basic', details);
-
-    $ionicPush.register().then(function(t) {
-      return $ionicPush.saveToken(t);
-    }).then(function(t) {
-      window.alert('Token saved:', JSON.stringify(t.token));
-    });
 
     //Begin the service
     //hard coded 'target'
@@ -79,12 +67,37 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
       $ionicPopup.alert({
         title: 'Target!',
         template: 'You are near your target!'
+      });
     });
-      
+
+
+    ClockSrv.startClock(function(){
+      $http({
+        method: 'GET',
+        url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+      }).then(function successCallback(response) {
+        if(Math.round((response.data.result*100))/100 < window.localStorage.getItem("temp")){
+          $cordovaLocalNotification.schedule({
+            id: 1,
+            text: 'Instant Notification',
+            title: 'Instant'
+            }).then(function () {
+              alert("Instant Notification set");
+            });
+        }
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
     });
+
 
   });
 })
+
+
 
 .directive('disableSideMenuDrag', ['$ionicSideMenuDelegate', '$rootScope', function($ionicSideMenuDelegate, $rootScope) {
     return {
@@ -98,11 +111,6 @@ angular.module('app', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 
             function allowDrag(){
               $ionicSideMenuDelegate.canDragContent(true);
             }
-
-            $scope.$on('cloud:push:notification', function(event, data) {
-              var msg = data.message;
-              alert(msg.title + ': ' + msg.text);
-            });
 
             $rootScope.$on('$ionicSlides.slideChangeEnd', allowDrag);
             $element.on('touchstart', stopDrag);
