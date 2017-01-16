@@ -64,9 +64,12 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
     GeoAlert.begin(lat,long, function() {
       console.log('TARGET');
       GeoAlert.end();
-      $ionicPopup.alert({
-        title: 'Target!',
-        template: 'You are near your target!'
+      $cordovaLocalNotification.schedule({
+        id: 1,
+        text: 'Instant Notification',
+        title: 'Instant'
+        }).then(function () {
+          alert("You are near your targt!");
       });
     });
 
@@ -74,15 +77,38 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
     ClockSrv.startClock(function(){
       $http({
         method: 'GET',
-        url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+        url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //temperature
       }).then(function successCallback(response) {
-        if(Math.round((response.data.result*100))/100 < window.localStorage.getItem("temp")){
+        if(window.localStorage.getItem("temp") == null){
+          return;
+        }
+        if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
             text: 'Instant Notification',
             title: 'Instant'
             }).then(function () {
-              alert("Instant Notification set");
+              alert("Warning: Current temperature is higher than desired threshold temperature!");
+            });
+        }
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+
+        $http({
+        method: 'GET',
+        url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //humidity
+      }).then(function successCallback(response) {
+        if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("humidity") && window.localStorage.getItem("humidity") != null){
+          $cordovaLocalNotification.schedule({
+            id: 1,
+            text: 'Instant Notification',
+            title: 'Instant'
+            }).then(function () {
+              alert("Warning: Current humidity is higher than desired threshold humidity!");
             });
         }
           // this callback will be called asynchronously

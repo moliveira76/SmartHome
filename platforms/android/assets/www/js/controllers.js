@@ -187,7 +187,8 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
 			  method: 'GET',
 			  url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 			}).then(function successCallback(response) {
-				$scope.tempTextArea = Math.round((response.data.result*100))/100;
+				$scope.tempTextArea = (Math.round((response.data.result*100))/100);
+				$scope.FTextArea = Math.round(((response.data.result*1.8)+32)*100)/100;
 			    // this callback will be called asynchronously
 			    // when the response is available
 			    //$scope.tempTextArea = 0.01;

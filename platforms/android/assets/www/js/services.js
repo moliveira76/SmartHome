@@ -67,7 +67,7 @@ angular.module('app.services', [])
   var service = {
     startClock: function(fn){
       if(clock === null){
-        clock = $interval(fn, 5000);
+        clock = $interval(fn, 10000);
       }
     },
     stopClock: function(){
