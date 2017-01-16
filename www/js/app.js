@@ -78,14 +78,15 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
       $http({
         method: 'GET',
         url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //temperature
-      }).then(function successCallback(response) {
+      }).then(function successCallback(response) {      
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'Instant Notification',
-            title: 'Instant'
+            text: 'We have detected an unusual temperature of ' + Math.round((response.data.result*100))/100,
+            title: 'Temperature Warning',
+            icon: 'img/temperature.png'
             }).then(function () {
-              alert("Warning: Current temperature is higher than desired threshold temperature!");
+              //alert("Warning: Current temperature is higher than desired threshold temperature!");
             });
         }
           // this callback will be called asynchronously
@@ -102,10 +103,11 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("humidity") && window.localStorage.getItem("humidity") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'Instant Notification',
-            title: 'Instant'
+            text: 'We have detected an unusual humidity of ' + Math.round((response.data.result*100))/100,
+            title: 'Humidity Warning',
+            icon: 'img/temperature_hot.png'
             }).then(function () {
-              alert("Warning: Current humidity is higher than desired threshold humidity!");
+              //alert("Warning: Current humidity is higher than desired threshold humidity!");
             });
         }
           // this callback will be called asynchronously
