@@ -79,9 +79,6 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         method: 'GET',
         url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //temperature
       }).then(function successCallback(response) {
-        if(window.localStorage.getItem("temp") == null){
-          return;
-        }
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
