@@ -298,15 +298,26 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 
 }])
 
-.controller('messagingCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('messagingCtrl', ['$scope', '$rootScope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+	$scope.users = [];
 
-	$scope.users = [
-		{name: "Mike", email: "mike@hotmail.com", checked: false},
-		{name: "Rajmy", email: "rajmy@hotmail.com", checked: false}
-	];
+	$http({
+  	method: 'GET',
+  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=123'
+	}).then(function successCallback(response) {
+		for(i=0; i<response.data.data.length; i++){
+			$scope.users[i] = {name: response.data.data[i].attributes.name, email: response.data.data[i].attributes.email, checked: false};
+		}
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }, function errorCallback(response) {
+	  	alert("Timed out...Please try again later");
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
 
 	$scope.checkedItems = {};
 

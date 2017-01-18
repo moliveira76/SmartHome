@@ -84,7 +84,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
             id: 1,
             text: 'We have detected an unusual temperature of ' + Math.round((response.data.result*100))/100,
             title: 'Temperature Warning',
-            icon: 'img/temperature.png'
+            icon: '../img/temperature.png'
             }).then(function () {
               //alert("Warning: Current temperature is higher than desired threshold temperature!");
             });
@@ -105,7 +105,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
             id: 1,
             text: 'We have detected an unusual humidity of ' + Math.round((response.data.result*100))/100,
             title: 'Humidity Warning',
-            icon: 'img/temperature_hot.png'
+            icon: '../imgtemperature_hot.png'
             }).then(function () {
               //alert("Warning: Current humidity is higher than desired threshold humidity!");
             });
