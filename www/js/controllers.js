@@ -259,6 +259,10 @@ function ($scope, $stateParams) {
 function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope, $ionicPush, $rootScope) {
 
 	$scope.auth = function(){
+		if($scope.data.username == null){
+			return;
+		}
+
 		$ionicLoading.show({
   			template: '<p>Loading...</p><ion-spinner icon="android"></ion-spinner>'
         });
