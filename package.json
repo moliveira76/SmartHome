@@ -4,6 +4,7 @@
   "description": "SmartHome: An Ionic project",
   "dependencies": {
     "@ionic/cloud": "^0.14.1",
+    "angular-chart.js": "^1.1.1",
     "bluebird": "^3.4.7",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -18,8 +19,8 @@
   },
   "cordovaPlugins": [
     {
-        "locator": "https://github.com/katzer/cordova-plugin-local-notifications.git",
-        "id": "de.appplant.cordova.plugin.local-notification"
+      "locator": "https://github.com/katzer/cordova-plugin-local-notifications.git",
+      "id": "de.appplant.cordova.plugin.local-notification"
     },
     "cordova-plugin-device",
     "cordova-plugin-console",

@@ -217,7 +217,12 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $stateParams, $rootScope) {
-
+	$scope.colors = ['#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+	$scope.data = [100,0];
+	$scope.labels = ["Humidity", ""];
+	$scope.options = {
+					  tooltips: {enabled: false}
+					 };
 	$scope.getHumidity = function(){
 
 		$http({
@@ -225,6 +230,9 @@ function ($scope, $http, $stateParams, $rootScope) {
 			  url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 			}).then(function successCallback(response) {
 				$scope.humidityTextArea = Math.round((response.data.result*100))/100;
+				$scope.labels = ["Humidity", ""];
+				$scope.colors = ['#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+  				$scope.data = [Math.round((response.data.result*100))/100, 100-(Math.round((response.data.result*100))/100)];
 			    // this callback will be called asynchronously
 			    // when the response is available
 			  }, function errorCallback(response) {
