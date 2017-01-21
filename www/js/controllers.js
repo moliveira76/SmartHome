@@ -229,7 +229,13 @@ function ($scope, $http, $stateParams, $rootScope) {
 			  method: 'GET',
 			  url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 			}).then(function successCallback(response) {
-				$scope.humidityTextArea = Math.round((response.data.result*100))/100;
+				var humidity = (Math.round((response.data.result*100))/100);
+				if((humidity/ Math.floor(humidity))==1){
+					$scope.humidityTextArea = humidity + ".0%";
+				}
+				else{
+					$scope.humidityTextArea = humidity + "%";
+				}
 				$scope.labels = ["Humidity", ""];
 				$scope.colors = ['#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
   				$scope.data = [Math.round((response.data.result*100))/100, 100-(Math.round((response.data.result*100))/100)];
