@@ -82,7 +82,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'We have detected an unusual temperature of ' + Math.round((response.data.result*100))/100,
+            text: 'We detected an unusual temperature!',
             title: 'Temperature Warning',
             icon: '../img/temperature.png'
             }).then(function () {
@@ -103,7 +103,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("humidity") && window.localStorage.getItem("humidity") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'We have detected an unusual humidity of ' + Math.round((response.data.result*100))/100,
+            text: 'We detected an unusual humidity!',
             title: 'Humidity Warning',
             icon: '../imgtemperature_hot.png'
             }).then(function () {
