@@ -31,7 +31,7 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 				OnStates.push(response.data.coreInfo.deviceID);
 			}
 		}, function errorCallback(response) {
-				  	alert(response);
+				  	//alert(response);
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 	  	});
@@ -43,10 +43,10 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 			//window.alert(response.data.result);
 			if(response.data.result == "ON"){
 				OnStates.push(response.data.coreInfo.deviceID);
-				window.alert(OnStates.indexOf('53ff6f066667574834212367') > -1);
+				//window.alert(OnStates.indexOf('53ff6f066667574834212367') > -1);
 			}
 		}, function errorCallback(response) {
-				  	alert(response);
+				  	//alert(response);
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 	  	});
@@ -60,7 +60,7 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 				OnStates.push(response.data.coreInfo.deviceID);
 			}
 		}, function errorCallback(response) {
-				  	alert(response);
+				  	//alert(response);
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 	  	});
@@ -148,7 +148,7 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 			    // this callback will be called asynchronously
 			    // when the response is available
 			  }, function errorCallback(response) {
-			  	alert("Timed out...Please try again later");
+			  	//alert("Timed out...Please try again later");
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });
@@ -204,7 +204,7 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
      			}
      			console.log("image:" + $scope.image);
 			  }, function errorCallback(response) {
-			  	alert(response);
+			  	//alert(response);
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });
@@ -236,7 +236,7 @@ function ($scope, $http, $stateParams, $rootScope) {
 			    // this callback will be called asynchronously
 			    // when the response is available
 			  }, function errorCallback(response) {
-			  	alert("Timed out...Please try again later");
+			  	//alert("Timed out...Please try again later");
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });
@@ -318,7 +318,7 @@ function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $io
 
 	$http({
   	method: 'GET',
-  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=123'
+  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=99'
 	}).then(function successCallback(response) {
 		for(i=0; i<response.data.data.length; i++){
 			$scope.users[i] = {name: response.data.data[i].attributes.name, email: response.data.data[i].attributes.email, checked: false};
@@ -326,7 +326,7 @@ function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $io
 	    // this callback will be called asynchronously
 	    // when the response is available
 	  }, function errorCallback(response) {
-	  	alert("Timed out...Please try again later");
+	  	//alert("Timed out...Please try again later");
 	    // called asynchronously if an error occurs
 	    // or server returns response with an error status.
 	  });

@@ -14,14 +14,37 @@
     </ion-header-bar>
     <ion-content padding="false" class="side-menu-left has-header ">
       <ion-list id="menu-list1">
-        <ion-item id="menu-list-item1" ui-sref="menu.home" menu-close="">Home</ion-item>
-        <ion-item id="menu-list-item2" ng-controller="lightCtrl" ng-click="checkStatus()" ui-sref="menu.light" menu-close="">Light</ion-item>
-        <ion-item id="menu-list-item10" ui-sref="menu.temperature" menu-close="">Temperature</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.humidity" menu-close="">Humidity</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.camera" menu-close="">Camera</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.messaging" ng-controller="messagingCtrl" menu-close="">Messaging</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.configurations" menu-close="">Configurations</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.logout" ng-controller="logoutCtrl" ng-click="logout()" menu-close="">Log Out</ion-item>
+        <ion-item>
+        <i class="ion-home" id="menu-list-item1" ui-sref="menu.home" menu-close=""> Home</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-lightbulb" id="menu-list-item2" ng-controller="lightCtrl" ng-click="checkStatus()" ui-sref="menu.light" menu-close=""> Light</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-thermometer" id="menu-list-item10" ui-sref="menu.temperature" menu-close=""> Temperature</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-waterdrop" id="menu-list-item3" ui-sref="menu.humidity" menu-close=""> Humidity</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-camera" id="menu-list-item3" ui-sref="menu.camera" menu-close=""> Camera</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-android-mail" id="menu-list-item3" ui-sref="menu.messaging" ng-controller="messagingCtrl" menu-close=""> Messaging</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-android-settings" id="menu-list-item3" ui-sref="menu.configurations" menu-close=""> Configurations</i>
+        </ion-item>
+
+        <ion-item>
+        <i class="ion-ios-close" id="menu-list-item3" ui-sref="menu.logout" ng-controller="logoutCtrl" ng-click="logout()" menu-close=""> Log Out</i>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

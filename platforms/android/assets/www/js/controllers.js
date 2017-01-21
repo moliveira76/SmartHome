@@ -217,7 +217,12 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $stateParams, $rootScope) {
-
+	$scope.colors = ['#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+	$scope.data = [100,0];
+	$scope.labels = ["Humidity", ""];
+	$scope.options = {
+					  tooltips: {enabled: false}
+					 };
 	$scope.getHumidity = function(){
 
 		$http({
@@ -225,6 +230,9 @@ function ($scope, $http, $stateParams, $rootScope) {
 			  url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 			}).then(function successCallback(response) {
 				$scope.humidityTextArea = Math.round((response.data.result*100))/100;
+				$scope.labels = ["Humidity", ""];
+				$scope.colors = ['#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+  				$scope.data = [Math.round((response.data.result*100))/100, 100-(Math.round((response.data.result*100))/100)];
 			    // this callback will be called asynchronously
 			    // when the response is available
 			  }, function errorCallback(response) {
@@ -251,6 +259,10 @@ function ($scope, $stateParams) {
 function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope, $ionicPush, $rootScope) {
 
 	$scope.auth = function(){
+		if($scope.data.username == null){
+			return;
+		}
+
 		$ionicLoading.show({
   			template: '<p>Loading...</p><ion-spinner icon="android"></ion-spinner>'
         });
@@ -298,15 +310,26 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 
 }])
 
-.controller('messagingCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('messagingCtrl', ['$scope', '$rootScope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+	$scope.users = [];
 
-	$scope.users = [
-		{name: "Mike", email: "mike@hotmail.com", checked: false},
-		{name: "Rajmy", email: "rajmy@hotmail.com", checked: false}
-	];
+	$http({
+  	method: 'GET',
+  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=123'
+	}).then(function successCallback(response) {
+		for(i=0; i<response.data.data.length; i++){
+			$scope.users[i] = {name: response.data.data[i].attributes.name, email: response.data.data[i].attributes.email, checked: false};
+		}
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }, function errorCallback(response) {
+	  	alert("Timed out...Please try again later");
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
 
 	$scope.checkedItems = {};
 
