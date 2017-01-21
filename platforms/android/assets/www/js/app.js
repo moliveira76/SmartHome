@@ -51,11 +51,11 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
     /*var lat = 45.3145318; //929 bunchberry way
     var long = -75.6172014;*/
 
-    var lat = 45.3520158; //Kanata
-    var long = -75.91496169999999; 
+    //var lat = 45.3520158; //Kanata
+    //var long = -75.91496169999999; 
 
-    /*var lat = 45.3830819; //Carleton U
-    var long = -75.69831199999999;*/
+    var lat = 45.3830819; //Carleton U
+    var long = -75.69831199999999;
 
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
@@ -66,10 +66,10 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
       GeoAlert.end();
       $cordovaLocalNotification.schedule({
         id: 1,
-        text: 'Instant Notification',
-        title: 'Instant'
+        text: 'You are near your home!',
+        title: 'Approaching Home'
         }).then(function () {
-          alert("You are near your targt!");
+          //alert("You are near your target!");
       });
     });
 

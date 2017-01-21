@@ -1,11 +1,18 @@
 <ion-view title="Humidity" id="page3">
   <ion-content padding="true" class="has-header">
    
-<button id="humidity-button5" class="button button-positive  button-block" ng-click="getHumidity()">Tap me!</button>
-    <div>
-    	<canvas id="doughnut" class="chart chart-doughnut big"
+
+    <div class="row">
+    	<p style="position: absolute; margin-left: 130px; margin-top: 205px; z-index: 100; font-weight: bold; font-size: 25px;">{{humidityTextArea}}</p>
+
+    	<canvas style=" position: absolute; z-index: 0; margin-top: 39px;" id="doughnut" width="10" height="10" class="chart chart-doughnut"
   			chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options">
 		</canvas> 
     </div>
+
+    <div align="middle">
+    	<button align="middle" style="margin-top: 395px;" class="button button-positive button-small" ng-click="getHumidity()">Get Humidity!</button>
+    </div> 	
+    
   </ion-content>
 </ion-view>
