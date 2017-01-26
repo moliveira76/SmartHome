@@ -48,14 +48,14 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
 
     //Begin the service
     //hard coded 'target'
-    /*var lat = 45.3145318; //929 bunchberry way
-    var long = -75.6172014;*/
+    var lat = 45.3145318; //929 bunchberry way
+    var long = -75.6172014;
 
     //var lat = 45.3520158; //Kanata
     //var long = -75.91496169999999; 
 
-    var lat = 45.3830819; //Carleton U
-    var long = -75.69831199999999;
+    //var lat = 45.3830819; //Carleton U
+    //var long = -75.69831199999999;
 
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
@@ -82,7 +82,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'We have detected an unusual temperature of ' + Math.round((response.data.result*100))/100,
+            text: 'We detected an unusual temperature!',
             title: 'Temperature Warning',
             icon: '../img/temperature.png'
             }).then(function () {
@@ -103,7 +103,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
         if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("humidity") && window.localStorage.getItem("humidity") != null){
           $cordovaLocalNotification.schedule({
             id: 1,
-            text: 'We have detected an unusual humidity of ' + Math.round((response.data.result*100))/100,
+            text: 'We detected an unusual humidity!',
             title: 'Humidity Warning',
             icon: '../imgtemperature_hot.png'
             }).then(function () {

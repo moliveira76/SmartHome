@@ -48,14 +48,14 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
 
     //Begin the service
     //hard coded 'target'
-    /*var lat = 45.3145318; //929 bunchberry way
-    var long = -75.6172014;*/
+    var lat = 45.3145318; //929 bunchberry way
+    var long = -75.6172014;
 
     //var lat = 45.3520158; //Kanata
     //var long = -75.91496169999999; 
 
-    var lat = 45.3830819; //Carleton U
-    var long = -75.69831199999999;
+    //var lat = 45.3830819; //Carleton U
+    //var long = -75.69831199999999;
 
     function onConfirm(idx) {
       console.log('button '+idx+' pressed');
