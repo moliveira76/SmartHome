@@ -155,11 +155,8 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 	}
 
 }])
-   
-.controller('temperatureCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', '$cordovaLocalNotification', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
+
+.controller('temperatureCtrl', function($scope, LoginService, $http, $location, $ionicPopup, $state) {
 	$scope.image = "temperature.png";
 
 	function sleep(milliseconds) {
@@ -210,8 +207,7 @@ function ($scope, $http, $stateParams, $ionicPopup, $cordovaLocalNotification) {
 			  });
 	}
 
-
-}])
+})
    
 .controller('humidityCtrl', ['$scope', '$http', '$stateParams','$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -258,50 +254,18 @@ function ($scope, $stateParams) {
 
 
 }])
-   
-.controller('loginCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', '$rootScope', '$ionicPush', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, $rootScope, $ionicPush, $rootScope) {
-
-	$scope.auth = function(){
-		if($scope.data.username == null){
-			return;
-		}
-
-		$ionicLoading.show({
-  			template: '<p>Loading...</p><ion-spinner icon="android"></ion-spinner>'
-        });
-
-        //$rootScope.lights = [{name:"l1"}, {name: "l2"}, {name: "l3"}];
-
-		$http({
-	        method: 'POST',
-	        url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/authenticate',
-	        data: 'username=' + $scope.data.username + '&password=' + $scope.data.password,
-	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-		}).then(function successCallback(response) {
-			$scope.data.username = null;
-			$scope.data.password = null;
-			$location.path('/side-menu21/page7');
-			$ionicLoading.hide();
-		}, function errorCallback(response) {
-			$scope.data.username = null;
-			$scope.data.password = null;
-		  	$location.path('/page4');
-		  	$ionicLoading.hide();
-	  	   	$ionicPopup.alert({
-        		title: 'Login Failed!',
-        		template: 'Please check username/password!'
-    		});
-		    // called asynchronously if an error occurs
-		    // or server returns response with an error status.
-	  	});
-
-	}
 
 
-}])
+.controller('loginCtrl', function($scope, LoginService, $location, $ionicPopup, $state) {
+ 
+    $scope.auth = function() {
+		LoginService.loginUser($scope.data.username, $scope.data.password).then(function(response){
+			LoginService.addResponse(response);
+
+		});
+    }
+
+})
 
 
 .controller('logoutCtrl', ['$scope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller

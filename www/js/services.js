@@ -109,4 +109,53 @@ angular.module('app.services', [])
             return objectValue;
         }
     }
-});
+})
+
+
+.service('LoginService', function($q, $http, $location, $ionicPopup, $ionicLoading) {
+    var res = {};
+
+    var addResponse = function(resObj){
+      res = resObj;
+    };
+
+    var getResponse = function(){
+      return res;
+    };
+
+
+    return {
+        loginUser: function(name, pw) {
+          var deferred = $q.defer();
+
+          $ionicLoading.show({
+              template: '<p>Loading...</p><ion-spinner icon="android"></ion-spinner>'
+          });
+
+
+          $http({
+            method: 'POST',
+            url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/authenticate',
+            data: 'username=' + name + '&password=' + pw,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          }).then(function successCallback(response) {
+              $location.path('/side-menu21/page7');
+              $ionicLoading.hide();
+              deferred.resolve(response.data);
+          }, function errorCallback(response) {
+              $ionicLoading.hide();
+              var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+              });
+          });
+
+          return deferred.promise;
+        },
+
+        addResponse: addResponse,
+        getResponse: getResponse
+    };
+})
+
+
