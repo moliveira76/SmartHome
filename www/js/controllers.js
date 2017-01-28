@@ -169,6 +169,7 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 	}
 
 	$scope.getTemp = function(){
+		//console.log(LoginService.getResponse());
 		/*sleep(5000);
 
 		$cordovaLocalNotification.schedule({
