@@ -169,7 +169,6 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 	}
 
 	$scope.getTemp = function(){
-		//console.log(LoginService.getResponse());
 		/*sleep(5000);
 
 		$cordovaLocalNotification.schedule({
@@ -281,15 +280,13 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 
 }])
 
-.controller('messagingCtrl', ['$scope', '$rootScope', '$http', '$stateParams', '$location', '$ionicLoading', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
+.controller('messagingCtrl', function($scope, LoginService, $http, $location, $ionicPopup, $state) {
 	$scope.users = [];
+	res = LoginService.getResponse();
 
 	$http({
   	method: 'GET',
-  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=99'
+  	url: 'http://54.173.72.95:8080/release-0.0.1-SNAPSHOT/rest/api/smarthome/users?houseId=' + res.data.relationships.house.data[0].id
 	}).then(function successCallback(response) {
 		for(i=0; i<response.data.data.length; i++){
 			$scope.users[i] = {name: response.data.data[i].attributes.name, email: response.data.data[i].attributes.email, checked: false};
@@ -333,7 +330,7 @@ function ($scope, $rootScope, $http, $stateParams, $location, $ionicLoading, $io
         }
     }
 
-}])
+})
 
 
 
@@ -357,6 +354,40 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 }])
 
+
+.controller('accessdeniedCtrl', function($scope, LoginService, $http, $location, $ionicPopup, $state) {
+
+	$scope.checkTempAccess = function(){
+		res = LoginService.getResponse();
+		if(res.data.relationships.house.data.length == 0){
+			$state.go('menu.accessdenied');
+		}
+		else{
+			$state.go('menu.temperature');
+		}
+	}
+
+	$scope.checkHumidityAccess = function(){
+		res = LoginService.getResponse();
+		if(res.data.relationships.house.data.length == 0){
+			$state.go('menu.accessdenied');
+		}
+		else{
+			$state.go('menu.humidity');
+		}
+	}
+
+	$scope.checkConfigurationsAcess = function(){
+		res = LoginService.getResponse();
+		if(res.data.attributes.isadmin == false){
+			$state.go('menu.accessdenied');
+		}
+		else{
+			$state.go('menu.configurations');
+		}
+	}
+
+})
 
    
 .controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller

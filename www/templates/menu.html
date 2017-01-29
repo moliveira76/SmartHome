@@ -1,14 +1,14 @@
-<ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content enable-menu-with-back-views="true">
     <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button></ion-nav-back-button>
+      <!--<ion-nav-back-button></ion-nav-back-button>-->
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="side-menu21"></ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="left" id="side-menu21">
+  <ion-side-menu side="left" id="side-menu21" enable-menu-with-back-views="true">
     <ion-header-bar class="bar-stable">
       <div class="title">Menu</div>
     </ion-header-bar>
@@ -22,11 +22,11 @@
         <i class="ion-lightbulb"> Light</i>
         </ion-item>
 
-        <ion-item id="menu-list-item10" ui-sref="menu.temperature" menu-close="">
+        <ion-item id="menu-list-item10" ng-controller="accessdeniedCtrl" ng-click="checkTempAccess()" menu-close="">
         <i class="ion-thermometer"> Temperature</i>
         </ion-item>
 
-        <ion-item id="menu-list-item3" ui-sref="menu.humidity" menu-close="">
+        <ion-item id="menu-list-item3" ng-controller="accessdeniedCtrl" ng-click="checkHumidityAccess()" menu-close="">
         <i class="ion-waterdrop"> Humidity</i>
         </ion-item>
 
@@ -38,7 +38,7 @@
         <i class="ion-android-mail"> Messaging</i>
         </ion-item>
 
-        <ion-item id="menu-list-item3" ui-sref="menu.configurations" menu-close="">
+        <ion-item id="menu-list-item3" ng-controller="accessdeniedCtrl" ng-click="checkConfigurationsAcess()" menu-close="">
         <i class="ion-android-settings"> Configurations</i>
         </ion-item>
 

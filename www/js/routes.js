@@ -88,6 +88,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.accessdenied', {
+    url: '/page9',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/accessdenied.html'
+      }
+    }
+  })
+
+
 $urlRouterProvider.otherwise('/page4')
 
   
