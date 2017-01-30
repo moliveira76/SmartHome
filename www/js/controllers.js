@@ -1,16 +1,13 @@
 angular.module('app.controllers', ['ionic', 'ionic.cloud'])
   
-.controller('lightCtrl', ['$scope', '$http', '$stateParams', '$rootScope', '$cordovaLocalNotification', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotification) {
+.controller('lightCtrl', function($scope, $q, LoginService, $http, $location, $ionicPopup, $state) {
+	var res = LoginService.getResponse();
 
 	/*$scope.lights = [
 		{name: "Room 1", boardId: "53ff72066667574817532367", checked: false},
 		{name: "Room 2", boardId: "53ff6f066667574834212367", checked: false},
 		{name: "Room 3", boardId: "53ff6f066667574835380967", checked: false},
-	];
-
+	]
 
 	$scope.checkedItems = {};
 
@@ -20,8 +17,39 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 		console.log($scope.checkedItems);
 	}*/
 
+	$scope.lights = [];
+	/*for(var i=1; i<res.included.length; i++){
+		$scope.lights.push({
+			name: res.included[i].attributes.name, boardId: res.included[i].id
+		});
+	}*/
 
-	$scope.checkStatus = function(){
+	var t = function(i){
+		$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/' + res.included[i].id +'/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+		}).then(function successCallback(response) {
+			$scope.lights.push({
+				name: res.included[i].attributes.name, boardId: res.included[i].id, checked: (response.data.result == 'ON'? true : false)
+			});
+		});
+	}
+
+	for (var i=1; i<res.included.length; i++) {
+  		t(i);
+	}
+
+	$scope.update = function(light){
+		console.log(light.name, light.boardId, light.checked);
+		$http({
+            method: 'POST',
+            url: 'https://api.particle.io/v1/devices/' + light.boardId +'/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+            data: 'args=' + (light.checked == true ? 'on' : 'off'),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+    	})
+	}
+
+	/*$scope.checkStatus = function(){
 		$http({
 	        method: 'GET',
 	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
@@ -127,9 +155,9 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         	})
 	    }
-  	});
+  	});*/
 
-  	$scope.getUsage = function(event){
+  	/*$scope.getUsage = function(event){
 		$http({
 			  method: 'GET',
 			  url: 'https://api.particle.io/v1/devices/' + event.target.id + '/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
@@ -152,9 +180,29 @@ function ($scope, $http, $timeout, $stateParams, $rootScope, $cordovaLocalNotifi
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });
+	}*/
+
+	$scope.getUsage = function(light){
+		$http({
+	  		method: 'GET',
+	 	 	url: 'https://api.particle.io/v1/devices/' + light.boardId + '/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+		}).then(function successCallback(response) {
+			// Split s into minutes and seconds.
+			m       = response.data.result / 60; // 6442450 minutes.
+			seconds = Math.floor(response.data.result % 60);
+
+			// Split m into hours and minutes.
+			h       = m / 60; // 107374 hours.
+			minutes = Math.floor(m % 60);
+
+			// Split h into days and hours.
+			hours   = Math.floor(h % 24);
+			$scope.usagetxtarea = hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+		  }, function errorCallback(response) {
+		  });
 	}
 
-}])
+})
 
 .controller('temperatureCtrl', function($scope, LoginService, $http, $location, $ionicPopup, $state) {
 	$scope.image = "temperature.png";
