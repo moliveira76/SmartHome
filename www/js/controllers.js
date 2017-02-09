@@ -304,13 +304,110 @@ function ($scope, $stateParams) {
 }])
 
 
-.controller('loginCtrl', function($scope, LoginService, $location, $ionicPopup, $state) {
+.controller('loginCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
  
     $scope.auth = function() {
 		LoginService.loginUser($scope.data.username, $scope.data.password).then(function(response){
 			LoginService.addResponse(response);
-
+			getAddress();
 		});
+
+		ClockSrv.startClock(function(){
+				var res = LoginService.getResponse();
+
+		      $http({
+		        method: 'GET',
+		        url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //temperature
+		      }).then(function successCallback(response) {
+		        if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("temp") && window.localStorage.getItem("temp") != null){
+		          $cordovaLocalNotification.schedule({
+		            id: 1,
+		            text: 'We detected an unusual temperature!',
+		            title: 'Temperature Warning',
+		            icon: '../img/temperature.png'
+		            }).then(function () {
+		              //alert("Warning: Current temperature is higher than desired threshold temperature!");
+		            });
+		        }
+		          // this callback will be called asynchronously
+		          // when the response is available
+		        }, function errorCallback(response) {
+		          // called asynchronously if an error occurs
+		          // or server returns response with an error status.
+		        });
+
+		        $http({
+		        method: 'GET',
+		        url: 'https://api.particle.io/v1/devices/230046001347343339383037/humidity?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //humidity
+		      }).then(function successCallback(response) {
+		        if(Math.round((response.data.result*100))/100 > window.localStorage.getItem("humidity") && window.localStorage.getItem("humidity") != null){
+		          $cordovaLocalNotification.schedule({
+		            id: 1,
+		            text: 'We detected an unusual humidity!',
+		            title: 'Humidity Warning',
+		            icon: '../imgtemperature_hot.png'
+		            }).then(function () {
+		              //alert("Warning: Current humidity is higher than desired threshold humidity!");
+		            });
+		        }
+		          // this callback will be called asynchronously
+		          // when the response is available
+		        }, function errorCallback(response) {
+		          // called asynchronously if an error occurs
+		          // or server returns response with an error status.
+		        });
+	    });
+
+
+
+
+	function getAddress(){
+
+		var res = LoginService.getResponse();
+		console.log(res)
+		address = '929 Bunchberry Way';
+		//address = '349 Terry Fox Drive';
+	    // Initialize the Geocoder
+	    geocoder = new google.maps.Geocoder();
+	    if (geocoder) {
+	        geocoder.geocode({
+	            'address': address
+	        }, function (results, status) {
+	            if (status == google.maps.GeocoderStatus.OK) {
+	                console.log("lat of " + address + "is: " + results[0].geometry.location.lat());
+	                console.log("long of " + address + "is: " + results[0].geometry.location.lng());
+	                startGeo(results[0].geometry.location.lat(), results[0].geometry.location.lng())
+	            }
+	        });
+	    }
+
+	}
+  
+
+
+
+    function startGeo(lat, long){
+    	GeoAlert.begin(lat,long, function() {
+    		console.log("LAT ISSSS: " + lat)
+
+	      console.log('TARGET');
+	      GeoAlert.end();
+	      $cordovaLocalNotification.schedule({
+	        id: 1,
+	        text: 'You are near your home!',
+	        title: 'Approaching Home'
+	        }).then(function () {
+	          //alert("You are near your target!");
+	      });
+	    });
+
+    }
+
+	 
+
+
+
+
     }
 
 })
