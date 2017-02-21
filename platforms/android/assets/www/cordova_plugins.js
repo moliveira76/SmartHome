@@ -105,6 +105,14 @@ module.exports = [
         "clobbers": [
             "EmailComposer"
         ]
+    },
+    {
+        "id": "com.hutchind.cordova.plugins.streamingmedia.StreamingMedia",
+        "file": "plugins/com.hutchind.cordova.plugins.streamingmedia/www/StreamingMedia.js",
+        "pluginId": "com.hutchind.cordova.plugins.streamingmedia",
+        "clobbers": [
+            "streamingMedia"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -122,7 +130,8 @@ module.exports.metadata =
     "phonegap-plugin-push": "1.9.2",
     "cordova-plugin-app-event": "1.2.0",
     "de.appplant.cordova.plugin.local-notification": "0.8.4",
-    "com.jcjee.plugins.emailcomposer": "1.4.6"
+    "com.jcjee.plugins.emailcomposer": "1.4.6",
+    "com.hutchind.cordova.plugins.streamingmedia": "0.1.4"
 };
 // BOTTOM OF METADATA
 });

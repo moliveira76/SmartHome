@@ -61,7 +61,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
       console.log('button '+idx+' pressed');
     }
     
-    GeoAlert.begin(lat,long, function() {
+    /*GeoAlert.begin(lat,long, function() {
       console.log('TARGET');
       GeoAlert.end();
       $cordovaLocalNotification.schedule({
@@ -74,7 +74,22 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
     });
 
 
-    ClockSrv.startClock(function(){
+    address = '929 Bunchberry Way';
+    // Initialize the Geocoder
+    geocoder = new google.maps.Geocoder();
+    if (geocoder) {
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log(results[0].geometry.location.lat());
+                console.log(results[0].geometry.location.lng());
+            }
+        });
+    }*/
+
+
+    /*ClockSrv.startClock(function(){
       $http({
         method: 'GET',
         url: 'https://api.particle.io/v1/devices/230046001347343339383037/tempC?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //temperature
@@ -116,7 +131,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', '
           // called asynchronously if an error occurs
           // or server returns response with an error status.
         });
-    });
+    });*/
 
 
   });

@@ -47,6 +47,10 @@
                         {
                             "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"com.jcjee.plugins.EmailComposer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StreamingMedia\"><param name=\"android-package\" value=\"com.hutchind.cordova.plugins.streamingmedia.StreamingMedia\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -70,7 +74,7 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
@@ -165,6 +169,14 @@
                         {
                             "xml": "<activity android:exported=\"false\" android:launchMode=\"singleInstance\" android:name=\"de.appplant.cordova.plugin.notification.ClickActivity\" android:theme=\"@android:style/Theme.NoDisplay\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Audio Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Video Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream\" />",
+                            "count": 1
                         }
                     ],
                     "application": [
@@ -226,6 +238,9 @@
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "com.jcjee.plugins.emailcomposer": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
@@ -336,6 +351,14 @@
             "clobbers": [
                 "EmailComposer"
             ]
+        },
+        {
+            "id": "com.hutchind.cordova.plugins.streamingmedia.StreamingMedia",
+            "file": "plugins/com.hutchind.cordova.plugins.streamingmedia/www/StreamingMedia.js",
+            "pluginId": "com.hutchind.cordova.plugins.streamingmedia",
+            "clobbers": [
+                "streamingMedia"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -351,6 +374,7 @@
         "phonegap-plugin-push": "1.9.2",
         "cordova-plugin-app-event": "1.2.0",
         "de.appplant.cordova.plugin.local-notification": "0.8.4",
-        "com.jcjee.plugins.emailcomposer": "1.4.6"
+        "com.jcjee.plugins.emailcomposer": "1.4.6",
+        "com.hutchind.cordova.plugins.streamingmedia": "0.1.4"
     }
 }

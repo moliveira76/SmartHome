@@ -49,139 +49,6 @@ angular.module('app.controllers', ['ionic', 'ionic.cloud'])
     	})
 	}
 
-	/*$scope.checkStatus = function(){
-		$http({
-	        method: 'GET',
-	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
-		}).then(function successCallback(response) {
-			//window.alert(response.data.result);
-			if(response.data.result == "ON"){
-				OnStates.push(response.data.coreInfo.deviceID);
-			}
-		}, function errorCallback(response) {
-				  	//alert(response);
-				    // called asynchronously if an error occurs
-				    // or server returns response with an error status.
-	  	});
-
-	  	$http({
-	        method: 'GET',
-	        url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
-		}).then(function successCallback(response) {
-			//window.alert(response.data.result);
-			if(response.data.result == "ON"){
-				OnStates.push(response.data.coreInfo.deviceID);
-				//window.alert(OnStates.indexOf('53ff6f066667574834212367') > -1);
-			}
-		}, function errorCallback(response) {
-				  	//alert(response);
-				    // called asynchronously if an error occurs
-				    // or server returns response with an error status.
-	  	});
-
-	  	$http({
-	        method: 'GET',
-	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
-		}).then(function successCallback(response) {
-			//window.alert(response.data.result);
-			if(response.data.result == "ON"){
-				OnStates.push(response.data.coreInfo.deviceID);
-			}
-		}, function errorCallback(response) {
-				  	//alert(response);
-				    // called asynchronously if an error occurs
-				    // or server returns response with an error status.
-	  	});
-
-	}
-
-
-
-	$scope.toggleState = { checked: false };
-
-  
-  	$scope.$watch('toggleState.checked1', function(newValue, oldValue) {
-	    if(newValue == true){
-	      $http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=on',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-	    else{
-	    	$http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=off',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-  	});
-
-  	$scope.$watch('toggleState.checked2', function(newValue, oldValue) {
-	    if(newValue == true){
-	      $http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=on',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-	    else{
-	    	$http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=off',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-  	});
-
-  	$scope.$watch('toggleState.checked3', function(newValue, oldValue) {
-	    if(newValue == true){
-	      $http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=on',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-	    else{
-	    	$http({
-	            method: 'POST',
-	            url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/led?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-	            data: 'args=off',
-	            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        	})
-	    }
-  	});*/
-
-  	/*$scope.getUsage = function(event){
-		$http({
-			  method: 'GET',
-			  url: 'https://api.particle.io/v1/devices/' + event.target.id + '/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
-			}).then(function successCallback(response) {
-				// Split s into minutes and seconds.
-				m       = response.data.result / 60; // 6442450 minutes.
-				seconds = Math.floor(response.data.result % 60);
-
-				// Split m into hours and minutes.
-				h       = m / 60; // 107374 hours.
-				minutes = Math.floor(m % 60);
-
-				// Split h into days and hours.
-				hours   = Math.floor(h % 24);
-				$scope.usagetxtarea = hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
-			    // this callback will be called asynchronously
-			    // when the response is available
-			  }, function errorCallback(response) {
-			  	//alert("Timed out...Please try again later");
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			  });
-	}*/
-
 	$scope.getUsage = function(light){
 		$http({
 	  		method: 'GET',
@@ -304,7 +171,7 @@ function ($scope, $stateParams) {
 }])
 
 
-.controller('loginCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+.controller('loginCtrl', function($scope, LoginService, AlarmPIRClockSrv, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state, $cordovaLocalNotification) {
  
     $scope.auth = function() {
 		LoginService.loginUser($scope.data.username, $scope.data.password).then(function(response){
@@ -312,8 +179,80 @@ function ($scope, $stateParams) {
 			getAddress();
 		});
 
+
+		AlarmPIRClockSrv.startClock(function(){
+			$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/alarmState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+			}).then(function successCallback(response) {
+				if(response.data.result == "ON"){
+					$cordovaLocalNotification.schedule({
+			            id: 1,
+			            text: 'Movement detected!',
+			            title: 'PIR Warning',
+			            icon: '../img/temperature.png'
+			            }).then(function () {
+		            });
+
+			        cordova.plugins.notification.local.on("click", function (notification, state) {
+                        $state.go('menu.camera');
+                    }, this)
+				}
+					
+	          }, function errorCallback(response) {
+	          	console.log(response.data)
+	          });
+
+			$http({
+	        method: 'GET',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/pirState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+			}).then(function successCallback(response) {
+				if(response.data.result == 1){
+					$cordovaLocalNotification.schedule({
+			            id: 1,
+			            text: 'Alarm is on!',
+			            title: 'Alarm Warning',
+			            icon: '../img/temperature.png'
+			            }).then(function () {
+		            });
+
+			        cordova.plugins.notification.local.on("click", function (notification, state) {
+                        $state.go('menu.camera');
+                    }, this)
+				}
+					
+	          }, function errorCallback(response) {
+	          	console.log(response.data)
+	          });
+
+
+		});
+
 		ClockSrv.startClock(function(){
 				var res = LoginService.getResponse();
+				var totalTime = 0;
+
+
+				for (var i=1; i<res.included.length; i++) {
+					$http({
+				        method: 'GET',
+				        url: 'https://api.particle.io/v1/devices/' + res.included[i].id +'/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+					}).then(function successCallback(response) {
+						totalTime = totalTime + response.data.result;
+						if(totalTime > (window.localStorage.getItem("light")*3600)){
+							$cordovaLocalNotification.schedule({
+					            id: 1,
+					            text: 'Light usage threshold exceeded!',
+					            title: 'Light Warning',
+					            icon: '../img/temperature.png'
+					            }).then(function () {
+					              //alert("Warning: Current temperature is higher than desired threshold temperature!");
+					            });
+						}
+					});
+				}
+
+				
 
 		      $http({
 		        method: 'GET',
@@ -484,16 +423,18 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sharedProperties) {
 
-	$scope.saveData = function(l, t, h){
+	$scope.saveData = function(l, t, h, i){
 	    window.localStorage.setItem("light", l);
 	    window.localStorage.setItem("temp", t);
 	    window.localStorage.setItem("humidity", h);
+	    window.localStorage.setItem("IP", i);
 	}
 
 	$scope.loadData = function(){
 	    $scope.lightThreshTextArea = window.localStorage.getItem("light");
 	    $scope.tempThreshTextArea  = window.localStorage.getItem("temp");
 	    $scope.humidityThreshTextArea  = window.localStorage.getItem("humidity");
+	    $scope.IPTextArea  = window.localStorage.getItem("IP");
   	}
 
 
@@ -534,6 +475,105 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 })
 
+.controller('cameraCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+
+	$scope.goSnapshot = function(){
+		console.log("SNAPSHOT")
+		$state.go('menu.snapshot');
+	}
+
+	$scope.goLivestream = function(){
+		console.log("LIVESTREAM")
+		$state.go('menu.livestream');
+	}
+
+	
+})
+
+.controller('snapshotCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+
+	$scope.ipAddress ="http://" + window.localStorage.getItem("IP") + "/latestPhoto.png";
+	console.log($scope.ipAddress)
+	
+})
+
+.controller('livestreamCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+
+	$scope.ipAddress ="http://" + window.localStorage.getItem("IP") + ":5000";
+	console.log($scope.ipAddress)
+
+	$scope.right = function(){
+		$http({
+	        method: 'POST',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/servoRight?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+	        data: '',
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			console.log(response.data)
+          }, function errorCallback(response) {
+          	console.log(response.data)
+          });
+	}
+
+	$scope.reset = function(){
+		$http({
+	        method: 'POST',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/servoReset?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+	        data: '',
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			console.log(response.data)
+          }, function errorCallback(response) {
+          	console.log(response.data)
+          });
+	}
+
+	$scope.left = function(){
+		$http({
+	        method: 'POST',
+	        url: 'https://api.particle.io/v1/devices/53ff6f066667574835380967/servoLeft?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+	        data: '',
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			console.log(response.data)
+          }, function errorCallback(response) {
+          	console.log(response.data)
+          });
+	}
+
+	
+})
+
+.controller('alarmCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+
+	$scope.turnOn = function(){
+		$http({
+	        method: 'POST',
+	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/alarm?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+	        data: 'args=on',
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			console.log(response.data)
+          }, function errorCallback(response) {
+          	console.log(response.data)
+          });
+	}
+
+	$scope.turnOn = function(){
+		$http({
+	        method: 'POST',
+	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/alarm?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+	        data: 'args=off',
+	        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).then(function successCallback(response) {
+			console.log(response.data)
+          }, function errorCallback(response) {
+          	console.log(response.data)
+          });
+	}
+
+
+})
    
 .controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function

@@ -88,6 +88,56 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.accessdenied', {
+    url: '/page9',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/accessdenied.html'
+      }
+    }
+  })
+
+  .state('menu.camera', {
+    url: '/page10',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/camera.html',
+        controller: 'cameraCtrl'
+      }
+    }
+  })
+
+  .state('menu.livestream', {
+    url: '/page12',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/livestream.html',
+        controller: 'livestreamCtrl'
+      }
+    }
+  })
+
+  .state('menu.snapshot', {
+    url: '/page13',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/snapshot.html',
+        controller: 'snapshotCtrl'
+      }
+    }
+  })
+
+  .state('menu.alarm', {
+    url: '/page11',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/alarm.html',
+        controller: 'alarmCtrl'
+      }
+    }
+  })
+
+
 $urlRouterProvider.otherwise('/page4')
 
   

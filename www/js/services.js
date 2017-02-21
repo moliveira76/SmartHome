@@ -61,6 +61,26 @@ angular.module('app.services', [])
    
 })
 
+.factory('AlarmPIRClockSrv', function($interval){
+  var clock = null;
+  var service = {
+    startClock: function(fn){
+      if(clock === null){
+        clock = $interval(fn, 10000);
+      }
+    },
+    stopClock: function(){
+      if(clock !== null){
+        $interval.cancel(clock);
+        clock = null;
+      }
+    }
+  };
+
+  return service;
+})
+
+
 
 .factory('ClockSrv', function($interval){
   var clock = null;

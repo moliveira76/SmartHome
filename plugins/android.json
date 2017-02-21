@@ -40,6 +40,9 @@
         },
         "com.jcjee.plugins.emailcomposer": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
     "dependent_plugins": {
