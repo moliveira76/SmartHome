@@ -107,6 +107,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.fan', {
+    url: '/page14',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/fan.html',
+        controller: 'fanCtrl'
+      }
+    }
+  })
+
   .state('menu.livestream', {
     url: '/page12',
     views: {

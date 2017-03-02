@@ -574,6 +574,44 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 
 })
+
+.controller('fanCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+
+	$http({
+        method: 'GET',
+        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/fanState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+	}).then(function successCallback(response) {
+			if(response.data.result == 'ON'){
+				$scope.fanImage = "fanOn.gif";
+			}
+			else{
+				$scope.fanImage = "fanOff.png";
+			};
+	});
+
+
+	$scope.update = function(fanModel){
+		$http({
+            method: 'POST',
+            url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/fan?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+            data: 'args=' + (fanModel.checked == true ? 'on' : 'off'),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+    	})
+
+    	if(fanModel.checked == true){
+    		$scope.fanImage = "fanOn.gif";
+		}
+		else{
+			$scope.fanImage = "fanOff.png";
+		};
+
+
+	};
+
+
+
+
+})
    
 .controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
