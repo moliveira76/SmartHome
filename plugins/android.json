@@ -7,19 +7,22 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-dialogs": {
+        "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "cordova-plugin-device": {
+        "com.jcjee.plugins.emailcomposer": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "cordova-plugin-splashscreen": {
@@ -28,28 +31,25 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "43450091796",
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "com.jcjee.plugins.emailcomposer": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "com.hutchind.cordova.plugins.streamingmedia": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-compat": {
+        "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-app-event": {
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     }

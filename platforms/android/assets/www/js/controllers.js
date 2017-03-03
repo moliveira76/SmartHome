@@ -576,13 +576,23 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 })
 
 .controller('fanCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+	$scope.fanImage = "fanOff.png";
+	//$scope.fans = [];
 
 	$http({
         method: 'GET',
         url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/fanState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 	}).then(function successCallback(response) {
+
+			/*$scope.fans.push({
+				checked: (response.data.result == 'ON'? true : false)
+			});*/
+
+
+
+
 			if(response.data.result == 'ON'){
-				$scope.fanImage = "fanOn.gif";
+				$scope.fanImage = "fanOn.png";
 			}
 			else{
 				$scope.fanImage = "fanOff.png";
@@ -590,16 +600,16 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 	});
 
 
-	$scope.update = function(fanModel){
+	$scope.update = function(fan){
 		$http({
             method: 'POST',
             url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/fan?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
-            data: 'args=' + (fanModel.checked == true ? 'on' : 'off'),
+            data: 'args=' + (fan.checked == true ? 'on' : 'off'),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     	})
 
-    	if(fanModel.checked == true){
-    		$scope.fanImage = "fanOn.gif";
+    	if(fan.checked == true){
+    		$scope.fanImage = "fanOn.png";
 		}
 		else{
 			$scope.fanImage = "fanOff.png";

@@ -9,11 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "xml": "<feature name=\"StreamingMedia\"><param name=\"android-package\" value=\"com.hutchind.cordova.plugins.streamingmedia.StreamingMedia\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"com.jcjee.plugins.EmailComposer\" /></feature>",
                             "count": 1
                         },
                         {
@@ -21,7 +21,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
                             "count": 1
                         },
                         {
@@ -33,11 +37,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -45,11 +45,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"com.jcjee.plugins.EmailComposer\" /></feature>",
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"StreamingMedia\"><param name=\"android-package\" value=\"com.hutchind.cordova.plugins.streamingmedia.StreamingMedia\" /></feature>",
+                            "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -57,24 +57,18 @@
             },
             "AndroidManifest.xml": {
                 "parents": {
-                    "/*": [
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
-                            "count": 1
-                        }
-                    ],
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
                             "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
@@ -107,39 +101,15 @@
                         {
                             "xml": "<permission android:name=\"${applicationId}.permission.PushHandlerActivity\" android:protectionLevel=\"signature\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
                         }
                     ],
                     "/manifest/application": [
                         {
-                            "xml": "<activity android:exported=\"true\" android:name=\"com.adobe.phonegap.push.PushHandlerActivity\" android:permission=\"${applicationId}.permission.PushHandlerActivity\" />",
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Audio Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<receiver android:name=\"com.adobe.phonegap.push.BackgroundActionButtonHandler\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.gcm.GcmReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><category android:name=\"${applicationId}\" /></intent-filter></receiver>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.GCMIntentService\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /></intent-filter></service>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.PushInstanceIDListenerService\"><intent-filter><action android:name=\"com.google.android.gms.iid.InstanceID\" /></intent-filter></service>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.RegistrationIntentService\" />",
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Video Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream\" />",
                             "count": 1
                         },
                         {
@@ -171,17 +141,47 @@
                             "count": 1
                         },
                         {
-                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Audio Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream\" />",
+                            "xml": "<activity android:exported=\"true\" android:name=\"com.adobe.phonegap.push.PushHandlerActivity\" android:permission=\"${applicationId}.permission.PushHandlerActivity\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Video Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream\" />",
+                            "xml": "<receiver android:name=\"com.adobe.phonegap.push.BackgroundActionButtonHandler\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.gcm.GcmReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><category android:name=\"${applicationId}\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.GCMIntentService\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.PushInstanceIDListenerService\"><intent-filter><action android:name=\"com.google.android.gms.iid.InstanceID\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"false\" android:name=\"com.adobe.phonegap.push.RegistrationIntentService\" />",
                             "count": 1
                         }
                     ],
                     "application": [
                         {
                             "xml": "<provider android:authorities=\"com.ionicframework.smarthome940951.plugins.emailcomposer.provider\" android:name=\"com.jcjee.plugins.EmailAttachmentProvider\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
                             "count": 1
                         }
                     ]
@@ -200,22 +200,28 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-dialogs": {
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "com.jcjee.plugins.emailcomposer": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-geolocation": {
+        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-console": {
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "cordova-plugin-splashscreen": {
@@ -224,28 +230,46 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
+        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "43450091796",
             "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "cordova-plugin-app-event": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "com.jcjee.plugins.emailcomposer": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
-        },
-        "com.hutchind.cordova.plugins.streamingmedia": {
-            "PACKAGE_NAME": "com.ionicframework.smarthome940951"
         }
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "id": "com.hutchind.cordova.plugins.streamingmedia.StreamingMedia",
+            "file": "plugins/com.hutchind.cordova.plugins.streamingmedia/www/StreamingMedia.js",
+            "pluginId": "com.hutchind.cordova.plugins.streamingmedia",
+            "clobbers": [
+                "streamingMedia"
+            ]
+        },
+        {
+            "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
+            "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
+            "pluginId": "com.jcjee.plugins.emailcomposer",
+            "clobbers": [
+                "EmailComposer"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device.device",
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
         {
             "id": "cordova-plugin-dialogs.notification",
             "file": "plugins/cordova-plugin-dialogs/www/notification.js",
@@ -277,14 +301,6 @@
             "runs": true
         },
         {
-            "id": "cordova-plugin-device.device",
-            "file": "plugins/cordova-plugin-device/www/device.js",
-            "pluginId": "cordova-plugin-device",
-            "clobbers": [
-                "device"
-            ]
-        },
-        {
             "id": "cordova-plugin-splashscreen.SplashScreen",
             "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
             "pluginId": "cordova-plugin-splashscreen",
@@ -298,23 +314,6 @@
             "pluginId": "cordova-plugin-statusbar",
             "clobbers": [
                 "window.StatusBar"
-            ]
-        },
-        {
-            "id": "ionic-plugin-keyboard.keyboard",
-            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-            "pluginId": "ionic-plugin-keyboard",
-            "clobbers": [
-                "cordova.plugins.Keyboard"
-            ],
-            "runs": true
-        },
-        {
-            "id": "phonegap-plugin-push.PushNotification",
-            "file": "plugins/phonegap-plugin-push/www/push.js",
-            "pluginId": "phonegap-plugin-push",
-            "clobbers": [
-                "PushNotification"
             ]
         },
         {
@@ -345,36 +344,37 @@
             ]
         },
         {
-            "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
-            "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
-            "pluginId": "com.jcjee.plugins.emailcomposer",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+            "pluginId": "ionic-plugin-keyboard",
             "clobbers": [
-                "EmailComposer"
-            ]
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
         },
         {
-            "id": "com.hutchind.cordova.plugins.streamingmedia.StreamingMedia",
-            "file": "plugins/com.hutchind.cordova.plugins.streamingmedia/www/StreamingMedia.js",
-            "pluginId": "com.hutchind.cordova.plugins.streamingmedia",
+            "id": "phonegap-plugin-push.PushNotification",
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "pluginId": "phonegap-plugin-push",
             "clobbers": [
-                "streamingMedia"
+                "PushNotification"
             ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-dialogs": "1.3.1",
+        "com.hutchind.cordova.plugins.streamingmedia": "0.1.4",
+        "com.jcjee.plugins.emailcomposer": "1.4.6",
+        "cordova-plugin-app-event": "1.2.0",
         "cordova-plugin-compat": "1.1.0",
-        "cordova-plugin-geolocation": "2.4.1",
-        "cordova-plugin-device": "1.1.4",
         "cordova-plugin-console": "1.0.5",
-        "cordova-plugin-whitelist": "1.3.1",
+        "cordova-plugin-device": "1.1.4",
+        "cordova-plugin-dialogs": "1.3.1",
+        "cordova-plugin-geolocation": "2.4.1",
         "cordova-plugin-splashscreen": "4.0.1",
         "cordova-plugin-statusbar": "2.2.1",
-        "ionic-plugin-keyboard": "2.2.1",
-        "phonegap-plugin-push": "1.9.2",
-        "cordova-plugin-app-event": "1.2.0",
+        "cordova-plugin-whitelist": "1.3.1",
         "de.appplant.cordova.plugin.local-notification": "0.8.4",
-        "com.jcjee.plugins.emailcomposer": "1.4.6",
-        "com.hutchind.cordova.plugins.streamingmedia": "0.1.4"
+        "ionic-plugin-keyboard": "2.2.1",
+        "phonegap-plugin-push": "1.9.2"
     }
 }
