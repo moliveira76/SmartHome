@@ -1,0 +1,10 @@
+<ion-view title="Heater" id="page15">
+  <ion-content padding="true" class="has-header">
+    <div style="margin-top: 75px;" align="middle">
+   	    <img style="margin-left: 15px;" width="256px" height="256px" ng-src="img\{{heaterImage}}"/>
+  </div> 
+
+  	<ion-toggle ng-repeat="heater in heaters" ng-model="heater.checked" toggle-class="toggle-positive" ng-change="update(heater)">Heater Control</ion-toggle>
+
+  </ion-content>
+</ion-view>

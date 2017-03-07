@@ -117,6 +117,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.heater', {
+    url: '/page15',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/heater.html',
+        controller: 'heaterCtrl'
+      }
+    }
+  })
+
   .state('menu.livestream', {
     url: '/page12',
     views: {

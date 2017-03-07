@@ -577,16 +577,16 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 .controller('fanCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
 	$scope.fanImage = "fanOff.png";
-	//$scope.fans = [];
+	$scope.fans = [];
 
 	$http({
         method: 'GET',
         url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/fanState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
 	}).then(function successCallback(response) {
 
-			/*$scope.fans.push({
+			$scope.fans.push({
 				checked: (response.data.result == 'ON'? true : false)
-			});*/
+			});
 
 
 
