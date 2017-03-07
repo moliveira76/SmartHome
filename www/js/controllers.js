@@ -333,17 +333,32 @@ function ($scope, $stateParams) {
     		console.log("LAT ISSSS: " + lat)
 
 	      console.log('TARGET');
-	      GeoAlert.end();
-	      $cordovaLocalNotification.schedule({
-	        id: 1,
-	        text: 'You are near your home!',
-	        title: 'Approaching Home'
-	        }).then(function () {
-	          //alert("You are near your target!");
-	      });
-	    });
 
-    }
+	      for (var i=1; i<res.included.length; i++) {
+				$http({
+			        method: 'GET',
+			        url: 'https://api.particle.io/v1/devices/' + res.included[i].id +'/state?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
+				}).then(function successCallback(response) {
+					if(response.data.result == 'ON')
+					{
+						GeoAlert.end();
+						console.log("HEREEEEE")
+				      	$cordovaLocalNotification.schedule({
+					        id: 1,
+					        text: 'You are near your home!',
+					        title: 'Approaching Home'
+					        }).then(function () {
+					          //alert("You are near your target!");
+				      	});
+					} //end if
+				}); //end .then()
+			} //end for loop
+
+
+
+	    }); //end GeoAlert
+
+    } //end function startGeo
 
 	 
 
