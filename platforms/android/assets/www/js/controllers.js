@@ -304,7 +304,10 @@ function ($scope, $stateParams) {
 
 		var res = LoginService.getResponse();
 		console.log(res)
-		address = '929 Bunchberry Way';
+		console.log("ADDRESS IS: " + res.data.attributes.address)
+
+		address = res.data.attributes.address;
+		//address = '929 Bunchberry Way';
 		//address = '349 Terry Fox Drive';
 	    // Initialize the Geocoder
 	    geocoder = new google.maps.Geocoder();
@@ -613,6 +616,55 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 		}
 		else{
 			$scope.fanImage = "fanOff.png";
+		};
+
+
+	};
+
+
+
+
+})
+
+
+.controller('heaterCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
+	$scope.heaterImage = "heaterOff.png";
+	$scope.heaters = [];
+
+	$http({
+        method: 'GET',
+        url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/heaterState?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba'
+	}).then(function successCallback(response) {
+
+			$scope.heaters.push({
+				checked: (response.data.result == 'ON'? true : false)
+			});
+
+
+
+
+			if(response.data.result == 'ON'){
+				$scope.heaterImage = "heaterOn.png";
+			}
+			else{
+				$scope.heaterImage = "heaterOff.png";
+			};
+	});
+
+
+	$scope.update = function(heater){
+		$http({
+            method: 'POST',
+            url: 'https://api.particle.io/v1/devices/53ff6f066667574834212367/heater?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
+            data: 'args=' + (heater.checked == true ? 'on' : 'off'),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+    	})
+
+    	if(heater.checked == true){
+    		$scope.heaterImage = "heaterOn.png";
+		}
+		else{
+			$scope.heaterImage = "heaterOff.png";
 		};
 
 

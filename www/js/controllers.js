@@ -188,8 +188,8 @@ function ($scope, $stateParams) {
 				if(response.data.result == "ON"){
 					$cordovaLocalNotification.schedule({
 			            id: 1,
-			            text: 'Movement detected!',
-			            title: 'PIR Warning',
+			            text: 'Alarm is on!',
+			            title: 'Alarm Warning',
 			            icon: '../img/temperature.png'
 			            }).then(function () {
 		            });
@@ -210,8 +210,8 @@ function ($scope, $stateParams) {
 				if(response.data.result == 1){
 					$cordovaLocalNotification.schedule({
 			            id: 1,
-			            text: 'Alarm is on!',
-			            title: 'Alarm Warning',
+			            text: 'Movement detected!',
+			            title: 'PIR Warning',
 			            icon: '../img/temperature.png'
 			            }).then(function () {
 		            });
