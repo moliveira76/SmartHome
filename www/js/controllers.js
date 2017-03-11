@@ -342,7 +342,7 @@ function ($scope, $stateParams) {
 				}).then(function successCallback(response) {
 					if(response.data.result == 'ON')
 					{
-						GeoAlert.end();
+						//GeoAlert.end();
 						console.log("HEREEEEE")
 				      	$cordovaLocalNotification.schedule({
 					        id: 1,
