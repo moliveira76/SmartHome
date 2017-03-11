@@ -22,9 +22,14 @@
 		    <input type="text" placeholder="" ng-model="IPTextArea">
 		  </label>
 
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Address</span>
+		    <input type="text" placeholder="" ng-model="addressTextArea">
+		  </label>
+
 		  <!--<button class="button button-block button-positive" ng-controller="configurationsCtrl" ng-click="setValues(lightThreshTextArea, tempThreshTextArea, humidityThreshTextArea)">Save</button>-->
 		   <button class="button button-block button-positive" ng-click="loadData()">Load</button>
-		  <button class="button button-block button-positive" ng-controller="configurationsCtrl" ng-click="saveData(lightThreshTextArea, tempThreshTextArea, humidityThreshTextArea, IPTextArea)">Save</button>
+		  <button class="button button-block button-positive" ng-controller="configurationsCtrl" ng-click="saveData(lightThreshTextArea, tempThreshTextArea, humidityThreshTextArea, IPTextArea, addressTextArea)">Save</button>
 		</div>
 
 	</ion-content>

@@ -308,7 +308,8 @@ function ($scope, $stateParams) {
 
 		//address = res.data.attributes.address;
 		//address = '929 Bunchberry Way';
-		address = '349 Terry Fox Drive';
+		//address = '349 Terry Fox Drive';
+		address = window.localStorage.getItem("address");
 	    // Initialize the Geocoder
 	    geocoder = new google.maps.Geocoder();
 	    if (geocoder) {
@@ -441,11 +442,13 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sharedProperties) {
 
-	$scope.saveData = function(l, t, h, i){
+	$scope.saveData = function(l, t, h, i, a){
 	    window.localStorage.setItem("light", l);
 	    window.localStorage.setItem("temp", t);
 	    window.localStorage.setItem("humidity", h);
 	    window.localStorage.setItem("IP", i);
+	    window.localStorage.setItem("address", a);
+
 	}
 
 	$scope.loadData = function(){
@@ -453,6 +456,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 	    $scope.tempThreshTextArea  = window.localStorage.getItem("temp");
 	    $scope.humidityThreshTextArea  = window.localStorage.getItem("humidity");
 	    $scope.IPTextArea  = window.localStorage.getItem("IP");
+	    $scope.addressTextArea = window.localStorage.getItem("address");
   	}
 
 
