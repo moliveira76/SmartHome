@@ -38,7 +38,7 @@ angular.module('app.services', [])
         console.log(position.coords.latitude, position.coords.longitude);
         var dist = getDistanceFromLatLonInKm(lat, long, position.coords.latitude, position.coords.longitude);
         console.log("dist in km is "+dist);
-        if(dist <= minDistance) callback();
+        if(dist >= minDistance) callback();
       });
    }
    

@@ -306,9 +306,9 @@ function ($scope, $stateParams) {
 		console.log(res)
 		console.log("ADDRESS IS: " + res.data.attributes.address)
 
-		address = res.data.attributes.address;
+		//address = res.data.attributes.address;
 		//address = '929 Bunchberry Way';
-		//address = '349 Terry Fox Drive';
+		address = '349 Terry Fox Drive';
 	    // Initialize the Geocoder
 	    geocoder = new google.maps.Geocoder();
 	    if (geocoder) {
