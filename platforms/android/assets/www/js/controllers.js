@@ -523,12 +523,10 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 .controller('cameraCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
 
 	$scope.goSnapshot = function(){
-		console.log("SNAPSHOT")
 		$state.go('menu.snapshot');
 	}
 
 	$scope.goLivestream = function(){
-		console.log("LIVESTREAM")
 		$state.go('menu.livestream');
 	}
 
@@ -538,7 +536,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 .controller('snapshotCtrl', function($scope, LoginService, ClockSrv, GeoAlert, $http, $location, $ionicPopup, $state) {
 
 	$scope.ipAddress ="http://" + window.localStorage.getItem("IP") + "/latestPhoto.png";
-	console.log($scope.ipAddress)
+	console.log("SNAPSHOTtttttttttttttttttttt " + $scope.ipAddress)
 	
 })
 

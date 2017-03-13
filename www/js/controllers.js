@@ -239,7 +239,7 @@ function ($scope, $stateParams) {
 				        url: 'https://api.particle.io/v1/devices/' + res.included[i].id +'/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
 					}).then(function successCallback(response) {
 						totalTime = totalTime + response.data.result;
-						if(totalTime > (window.localStorage.getItem("light")*3600) && window.localStorage.getItem("light") != null){
+						if(totalTime > (window.localStorage.getItem("light")*60) && window.localStorage.getItem("light") != null){
 							$cordovaLocalNotification.schedule({
 					            id: 1,
 					            text: 'Light usage threshold exceeded!',
