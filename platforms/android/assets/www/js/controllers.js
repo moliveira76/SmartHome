@@ -239,7 +239,7 @@ function ($scope, $stateParams) {
 				        url: 'https://api.particle.io/v1/devices/' + res.included[i].id +'/usageTime?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba' //Light 3
 					}).then(function successCallback(response) {
 						totalTime = totalTime + response.data.result;
-						if(totalTime > (window.localStorage.getItem("light")*3600)){
+						if(totalTime > (window.localStorage.getItem("light")*3600) && window.localStorage.getItem("light") != null){
 							$cordovaLocalNotification.schedule({
 					            id: 1,
 					            text: 'Light usage threshold exceeded!',
@@ -248,6 +248,11 @@ function ($scope, $stateParams) {
 					            }).then(function () {
 					              //alert("Warning: Current temperature is higher than desired threshold temperature!");
 					            });
+
+
+					         cordova.plugins.notification.local.on("click", function (notification, state) {
+		                        $state.go('menu.light');
+		                    }, this)
 						}
 					});
 				}
@@ -267,6 +272,12 @@ function ($scope, $stateParams) {
 		            }).then(function () {
 		              //alert("Warning: Current temperature is higher than desired threshold temperature!");
 		            });
+
+		            cordova.plugins.notification.local.on("click", function (notification, state) {
+                        $state.go('menu.temperature');
+                    }, this)
+
+
 		        }
 		          // this callback will be called asynchronously
 		          // when the response is available
@@ -288,6 +299,12 @@ function ($scope, $stateParams) {
 		            }).then(function () {
 		              //alert("Warning: Current humidity is higher than desired threshold humidity!");
 		            });
+
+		            cordova.plugins.notification.local.on("click", function (notification, state) {
+                        $state.go('menu.humidity');
+                    }, this)
+
+
 		        }
 		          // this callback will be called asynchronously
 		          // when the response is available
@@ -308,7 +325,8 @@ function ($scope, $stateParams) {
 
 		//address = res.data.attributes.address;
 		//address = '929 Bunchberry Way';
-		address = '349 Terry Fox Drive';
+		//address = '349 Terry Fox Drive';
+		address = window.localStorage.getItem("address");
 	    // Initialize the Geocoder
 	    geocoder = new google.maps.Geocoder();
 	    if (geocoder) {
@@ -341,15 +359,21 @@ function ($scope, $stateParams) {
 				}).then(function successCallback(response) {
 					if(response.data.result == 'ON')
 					{
-						GeoAlert.end();
+						//GeoAlert.end();
 						console.log("HEREEEEE")
 				      	$cordovaLocalNotification.schedule({
 					        id: 1,
-					        text: 'You are near your home!',
-					        title: 'Approaching Home'
+					        text: 'Want to turn them off?',
+					        title: 'Lights are on!'
 					        }).then(function () {
 					          //alert("You are near your target!");
 				      	});
+
+					    cordova.plugins.notification.local.on("click", function (notification, state) {
+                        $state.go('menu.light');
+                    	}, this)
+
+
 					} //end if
 				}); //end .then()
 			} //end for loop
@@ -441,11 +465,13 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sharedProperties) {
 
-	$scope.saveData = function(l, t, h, i){
+	$scope.saveData = function(l, t, h, i, a){
 	    window.localStorage.setItem("light", l);
 	    window.localStorage.setItem("temp", t);
 	    window.localStorage.setItem("humidity", h);
 	    window.localStorage.setItem("IP", i);
+	    window.localStorage.setItem("address", a);
+
 	}
 
 	$scope.loadData = function(){
@@ -453,6 +479,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 	    $scope.tempThreshTextArea  = window.localStorage.getItem("temp");
 	    $scope.humidityThreshTextArea  = window.localStorage.getItem("humidity");
 	    $scope.IPTextArea  = window.localStorage.getItem("IP");
+	    $scope.addressTextArea = window.localStorage.getItem("address");
   	}
 
 
@@ -463,7 +490,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 	$scope.checkTempAccess = function(){
 		res = LoginService.getResponse();
-		if(res.data.relationships.house.data.length == 0){
+		if(res.data.relationships.house.data[0].id == "restricted"){
 			$state.go('menu.accessdenied');
 		}
 		else{
@@ -473,7 +500,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
 
 	$scope.checkHumidityAccess = function(){
 		res = LoginService.getResponse();
-		if(res.data.relationships.house.data.length == 0){
+		if(res.data.relationships.house.data[0].id == "restricted"){
 			$state.go('menu.accessdenied');
 		}
 		else{
@@ -577,7 +604,7 @@ function ($scope, $http, $stateParams, $location, $ionicLoading, $ionicPopup, sh
           });
 	}
 
-	$scope.turnOn = function(){
+	$scope.turnOff = function(){
 		$http({
 	        method: 'POST',
 	        url: 'https://api.particle.io/v1/devices/53ff72066667574817532367/alarm?access_token=04b90f278a1415636513f0f71fe9f89e92cdfcba',
